@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- The COPYRIGHT file at the top level of this repository contains the full
+     copyright notices and license terms. -->
+<tree string="Supply Request Line">
+    <field name="request"/>
+    <field name="product"/>
+    <field name="quantity"/>
+    <field name="unit"/>
+    <field name="to_location"/>
+    <field name="delivery_date"/>
+    <field name="supply_state"/>
+</tree>
