@@ -84,12 +84,16 @@ class TestCase(unittest.TestCase):
 
             storage2 = self.location(type='storage', name='Warehouse2 STO',
                 code='STO2')
+            production_loc = self.location(type='production', name='Location',
+                code='Location')
+
             storage2.save()
             warehouse2 = self.location(type='warehouse',
                 name='Warehouse2',
                 code='WH2',
                 input_location=storage2,
                 output_location=storage2,
+                production_location=production_loc,
                 storage_location=storage2)
             warehouse2.save()
             storage2.parent = warehouse2.id
