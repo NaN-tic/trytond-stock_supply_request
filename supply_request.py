@@ -231,7 +231,7 @@ class SupplyRequestLine(ModelSQL, ModelView):
                 ('parent', 'child_of', [Eval('_parent_request',{}).get(
                         'to_warehouse',0)]),
                 ()),
-            ], depends=['to_warehouse'])
+            ])
     delivery_date = fields.Date("Delivery Date", required=True)
     move = fields.Many2One('stock.move', 'Reserve', readonly=True, states={
             'required': Equal(Eval('_parent_request.state'), 'confirmed'),
@@ -254,11 +254,6 @@ class SupplyRequestLine(ModelSQL, ModelView):
     @classmethod
     def search_company(cls, name, clause):
         return [('request.%s' % name,) + tuple(clause[1:])]
-
-    def on_change_with_to_warehouse(self, name=None):
-        if self.request and self.request.to_warehouse:
-            return self.request.to_warehouse.id
-        return None
 
     def on_change_product(self):
         res = {}
