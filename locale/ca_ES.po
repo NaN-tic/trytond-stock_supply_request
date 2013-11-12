@@ -2,6 +2,54 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "error:stock.supply_request:"
+msgid "Source and destination warehouse must be different"
+msgstr "L'orígin i el destí dels magatzems ha de ser diferent."
+
+msgctxt "field:stock.configuration,default_request_from_warehouse:"
+msgid "Default Request From Warehouse"
+msgstr "Magatzem per defecte de les sol·licituds"
+
+msgctxt "field:stock.configuration,supply_request_sequence:"
+msgid "Supply Request Reference Sequence"
+msgstr "Seqüència referencia petició proveidor"
+
+msgctxt "field:stock.configuration.company,company:"
+msgid "Company"
+msgstr "Empresa"
+
+msgctxt "field:stock.configuration.company,create_date:"
+msgid "Create Date"
+msgstr "Data creació"
+
+msgctxt "field:stock.configuration.company,create_uid:"
+msgid "Create User"
+msgstr "Usuari creació"
+
+msgctxt "field:stock.configuration.company,default_request_from_warehouse:"
+msgid "Default Request From Warehouse"
+msgstr "Magatzem per defecte de les sol·licituds"
+
+msgctxt "field:stock.configuration.company,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "field:stock.configuration.company,rec_name:"
+msgid "Name"
+msgstr "Nom"
+
+msgctxt "field:stock.configuration.company,supply_request_sequence:"
+msgid "Supply Request Reference Sequence"
+msgstr "Seqüència referencia petició proveidor"
+
+msgctxt "field:stock.configuration.company,write_date:"
+msgid "Write Date"
+msgstr "Data modificació"
+
+msgctxt "field:stock.configuration.company,write_uid:"
+msgid "Write User"
+msgstr "Usuari modificació"
+
 msgctxt "field:stock.supply_request,company:"
 msgid "Company"
 msgstr "Empresa"
@@ -18,9 +66,9 @@ msgctxt "field:stock.supply_request,date:"
 msgid "Date"
 msgstr "Data"
 
-msgctxt "field:stock.supply_request,from_location:"
-msgid "From location"
-msgstr "De la ubicació"
+msgctxt "field:stock.supply_request,from_warehouse:"
+msgid "From Warehouse"
+msgstr "Des del magatzem"
 
 msgctxt "field:stock.supply_request,id:"
 msgid "ID"
@@ -38,83 +86,23 @@ msgctxt "field:stock.supply_request,rec_name:"
 msgid "Name"
 msgstr "Nom"
 
+msgctxt "field:stock.supply_request,reference:"
+msgid "Reference"
+msgstr "Referència"
+
 msgctxt "field:stock.supply_request,state:"
 msgid "State"
 msgstr "Estat"
 
-msgctxt "field:stock.supply_request,to_location:"
-msgid "To Location"
-msgstr "A la ubicació"
-
-msgctxt "field:stock.supply_request,type:"
-msgid "Type"
-msgstr "Tipus"
+msgctxt "field:stock.supply_request,to_warehouse:"
+msgid "To Warehouse"
+msgstr "Al magatzem"
 
 msgctxt "field:stock.supply_request,write_date:"
 msgid "Write Date"
 msgstr "Data modificació"
 
 msgctxt "field:stock.supply_request,write_uid:"
-msgid "Write User"
-msgstr "Usuari modificació"
-
-msgctxt "field:stock.supply_request.configuration,create_date:"
-msgid "Create Date"
-msgstr "Data creació"
-
-msgctxt "field:stock.supply_request.configuration,create_uid:"
-msgid "Create User"
-msgstr "Usuari creació"
-
-msgctxt "field:stock.supply_request.configuration,default_from_location:"
-msgid "Default from location"
-msgstr "Ubicació origen per defecte"
-
-msgctxt "field:stock.supply_request.configuration,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:stock.supply_request.configuration,rec_name:"
-msgid "Name"
-msgstr "Nom"
-
-msgctxt "field:stock.supply_request.configuration,write_date:"
-msgid "Write Date"
-msgstr "Data modificació"
-
-msgctxt "field:stock.supply_request.configuration,write_uid:"
-msgid "Write User"
-msgstr "Usuari modificació"
-
-msgctxt "field:stock.supply_request.configuration.company,company:"
-msgid "Company"
-msgstr "Empresa"
-
-msgctxt "field:stock.supply_request.configuration.company,create_date:"
-msgid "Create Date"
-msgstr "Data creació"
-
-msgctxt "field:stock.supply_request.configuration.company,create_uid:"
-msgid "Create User"
-msgstr "Usuari creació"
-
-msgctxt "field:stock.supply_request.configuration.company,default_from_location:"
-msgid "Default from location"
-msgstr "Ubicació origen per defecte"
-
-msgctxt "field:stock.supply_request.configuration.company,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:stock.supply_request.configuration.company,rec_name:"
-msgid "Name"
-msgstr "Nom"
-
-msgctxt "field:stock.supply_request.configuration.company,write_date:"
-msgid "Write Date"
-msgstr "Data modificació"
-
-msgctxt "field:stock.supply_request.configuration.company,write_uid:"
 msgid "Write User"
 msgstr "Usuari modificació"
 
@@ -138,9 +126,9 @@ msgctxt "field:stock.supply_request.line,id:"
 msgid "ID"
 msgstr "ID"
 
-msgctxt "field:stock.supply_request.line,moves:"
-msgid "Moves"
-msgstr "Moviments"
+msgctxt "field:stock.supply_request.line,move:"
+msgid "Reserve"
+msgstr "Reservar"
 
 msgctxt "field:stock.supply_request.line,product:"
 msgid "Product"
@@ -158,9 +146,13 @@ msgctxt "field:stock.supply_request.line,request:"
 msgid "Request"
 msgstr "Sol·licitud"
 
-msgctxt "field:stock.supply_request.line,silo:"
-msgid "Silo"
-msgstr "Silo"
+msgctxt "field:stock.supply_request.line,supply_state:"
+msgid "Supply State"
+msgstr "Estat proveidor"
+
+msgctxt "field:stock.supply_request.line,to_location:"
+msgid "To Location"
+msgstr "A la ubicació"
 
 msgctxt "field:stock.supply_request.line,unit:"
 msgid "Unit"
@@ -178,45 +170,41 @@ msgctxt "field:stock.supply_request.line,write_uid:"
 msgid "Write User"
 msgstr "Usuari modificació"
 
-msgctxt "model:stock.supply_request,name:"
-msgid "Internal Request"
-msgstr "Petició interna"
+msgctxt "model:ir.action,name:act_supply_request"
+msgid "Supply Request"
+msgstr "Petició proveidor"
 
-msgctxt "model:stock.supply_request.configuration,name:"
-msgid "Internal Request Configuration"
-msgstr "Configuració peticions internes"
+msgctxt "model:ir.action,name:act_supply_request_line"
+msgid "Supply Request Line"
+msgstr "Línea peticions proveidor"
 
-msgctxt "model:stock.supply_request.configuration.company,name:"
-msgid "Company Internal Request Configuration"
-msgstr "Configuració per companyia de les peticions internes"
+msgctxt "model:ir.sequence,name:sequence_supply_request"
+msgid "Supply Request"
+msgstr "Petició proveidor"
 
-msgctxt "model:stock.supply_request.line,name:"
-msgid "Internal Request Line"
-msgstr "Línea peticions internes"
+msgctxt "model:ir.sequence.type,name:sequence_type_supply_request"
+msgid "Supply Request"
+msgstr "Petició proveidor"
 
-msgctxt "model:ir.action,name:act_supply_request_configuration"
-msgid "Internal Request Configuration"
-msgstr "Configuració peticions internes"
-
-msgctxt "model:ir.ui.menu,name:menu_supply_request"
-msgid "Internal Request"
-msgstr "Petició interna"
-
-msgctxt "model:ir.ui.menu,name:menu_supply_request_configuration"
-msgid "Configuration"
-msgstr "Configuració"
-
-msgctxt "model:ir.ui.menu,name:menu_supply_request_configuration_form"
-msgid "Internal Request Configuration"
-msgstr "Configuració peticions internes"
+msgctxt "model:ir.ui.menu,name:menu_supply_request_tree"
+msgid "Supply Request"
+msgstr "Petició proveidor"
 
 msgctxt "model:res.group,name:group_supply_request"
-msgid "Internal Request"
-msgstr "Petició interna"
+msgid "Stock Supply Request"
+msgstr "Petició proveidor"
 
-msgctxt "model:res.group,name:group_supply_request_admin"
-msgid "Internal Request Administration"
-msgstr "Adminitració peticions internes"
+msgctxt "model:stock.configuration.company,name:"
+msgid "Stock Configuration by Company"
+msgstr "Configuració stock per companyia"
+
+msgctxt "model:stock.supply_request,name:"
+msgid "Supply Request"
+msgstr "Petició proveidor"
+
+msgctxt "model:stock.supply_request.line,name:"
+msgid "Supply Request Line"
+msgstr "Línea peticions proveidor"
 
 msgctxt "selection:stock.supply_request,state:"
 msgid "Confirmed"
@@ -226,38 +214,34 @@ msgctxt "selection:stock.supply_request,state:"
 msgid "Draft"
 msgstr "Esborrany"
 
-msgctxt "selection:stock.supply_request,type:"
-msgid "Detailed"
-msgstr "Detallat"
+msgctxt "selection:stock.supply_request.line,supply_state:"
+msgid "Canceled"
+msgstr "Cancel·lat"
 
-msgctxt "selection:stock.supply_request,type:"
-msgid "Simple"
-msgstr "Simple"
+msgctxt "selection:stock.supply_request.line,supply_state:"
+msgid "Done"
+msgstr "Realitzat"
 
-msgctxt "view:stock.supply_request.configuration:"
-msgid "Internal Request Configuration"
-msgstr "Configuració peticions internes"
+msgctxt "selection:stock.supply_request.line,supply_state:"
+msgid "In Progress"
+msgstr "En progés"
+
+msgctxt "selection:stock.supply_request.line,supply_state:"
+msgid "Pending"
+msgstr "Pendent"
 
 msgctxt "view:stock.supply_request.line:"
-msgid "Internal Request Line"
-msgstr "Línea peticions internes"
+msgid "Supply Request Line"
+msgstr "Línea peticions proveidor"
 
 msgctxt "view:stock.supply_request:"
 msgid "Confirm"
 msgstr "Confirma"
 
 msgctxt "view:stock.supply_request:"
-msgid "Internal Request"
-msgstr "Petició interna"
+msgid "Supply Request"
+msgstr "Petició proveidor"
 
 msgctxt "view:stock.supply_request:"
-msgid "Internal Requests"
-msgstr "Peticions internes"
-
-msgctxt "view:stock.supply_request:"
-msgid "Lines"
-msgstr "Línies"
-
-msgctxt "view:stock.supply_request:"
-msgid "Notes"
-msgstr "Notes"
+msgid "Supply Requests"
+msgstr "Peticions proveidor"
