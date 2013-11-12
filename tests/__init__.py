@@ -2,3 +2,5 @@
 # copyright notices and license terms.
 
 from .test_stock_supply_request import suite
+
+__all__ = ['suite']
