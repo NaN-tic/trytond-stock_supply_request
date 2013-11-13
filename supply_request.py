@@ -1,13 +1,12 @@
 #The COPYRIGHT file at the top level of this repository contains the full
 #copyright notices and license terms.
-import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 from trytond.model import Model, ModelView, ModelSQL, Workflow, fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Bool, Eval, Equal, If, In
 from trytond.transaction import Transaction
 
-__all__ = ['Configuration', 'ConfigurationCompany', 'Move',
+__all__ = ['Configuration', 'ConfigurationCompany', 'Move', 'ShipmentInternal',
     'SupplyRequest', 'SupplyRequestLine']
 __metaclass__ = PoolMeta
 
@@ -90,7 +89,7 @@ class ConfigurationCompany(ModelSQL):
         return Transaction().context.get('company')
 
 
-class Move():
+class Move:
     __name__ = 'stock.move'
 
     @classmethod
@@ -98,6 +97,23 @@ class Move():
         models = super(Move, cls)._get_origin()
         models.append('stock.supply_request.line')
         return models
+
+
+class ShipmentInternal:
+    __name__ = 'stock.shipment.internal'
+
+    @classmethod
+    def __setup__(cls):
+        super(ShipmentInternal, cls).__setup__()
+        cls.moves.add_remove = [
+            ('shipment', '=', None),
+            ('state', 'in', ('draft', 'assigned')),
+            ('from_location', '=', Eval('from_location')),
+            ('to_location', '=', Eval('to_location')),
+            ]
+        for fname in ('from_location', 'to_location'):
+            if fname not in cls.moves.depends:
+                cls.moves.depends.append(fname)
 
 
 class SupplyRequest(Workflow, ModelSQL, ModelView):
@@ -137,6 +153,14 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
                 'CHECK(from_warehouse != to_warehouse)',
                 'Source and destination warehouse must be different'),
             ]
+        cls._error_messages.update({
+                'missing_supply_request_sequence': 'The sequence for Supply '
+                    'Requests is missing in Stock Configuration.',
+                'lines_required_confirmed': 'The Supply Request "%s" must '
+                    'have at least one line in order to be confirmed.',
+                'deletion_not_allowed': 'You can\'t delete the Supply Request '
+                    '"%s" because it isn\'t in Draft state.',
+                 })
         cls._transitions |= set((
                 ('draft', 'confirmed'),
                 ))
@@ -152,7 +176,7 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
 
     @staticmethod
     def default_date():
-        return datetime.datetime.now()
+        return datetime.now()
 
     @staticmethod
     def default_from_warehouse():
@@ -176,6 +200,9 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
     @Workflow.transition('confirmed')
     def confirm(cls, requests):
         for request in requests:
+            if not request.lines:
+                cls.raise_user_error('lines_required_confirmed',
+                    request.rec_name)
             for line in request.lines:
                 move = line.get_move()
                 move.save()
@@ -192,6 +219,8 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
         Sequence = pool.get('ir.sequence')
 
         config = Config(1)
+        if not config.supply_request_sequence:
+            self.raise_user_error('missing_supply_request_sequence')
         if not self.reference:
             reference = Sequence.get_id(config.supply_request_sequence.id)
             self.reference = reference
@@ -205,6 +234,13 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
         default['reference'] = None
         default['state'] = 'draft'
         return super(SupplyRequest, cls).copy(requests, default=default)
+
+    @classmethod
+    def delete(cls, requests):
+        for request in requests:
+            if request.state != 'draft':
+                cls.raise_user_error('deletion_not_allowed', request.rec_name)
+        super(SupplyRequest, cls).delete(requests)
 
 
 class SupplyRequestLine(ModelSQL, ModelView):
@@ -228,14 +264,17 @@ class SupplyRequestLine(ModelSQL, ModelView):
         required=True, domain=[
             ('type', '=', 'storage'),
             If(Bool(Eval('_parent_request', {}).get('to_warehouse', 0)),
-                ('parent', 'child_of', [Eval('_parent_request',{}).get(
-                        'to_warehouse',0)]),
+                ('parent', 'child_of', [Eval('_parent_request', {}).get(
+                        'to_warehouse', 0)]),
                 ()),
             ])
     delivery_date = fields.Date("Delivery Date", required=True)
-    move = fields.Many2One('stock.move', 'Reserve', readonly=True, states={
+    move = fields.Many2One('stock.move', 'Reserve', readonly=True, domain=[
+            ('product', '=', Eval('product')),
+            ],
+        states={
             'required': Equal(Eval('_parent_request.state'), 'confirmed'),
-            })
+            }, depends=['product'])
     supply_state = fields.Function(fields.Selection([
                 ('pending', 'Pending'),
                 ('in_progress', 'In Progress'),
@@ -246,7 +285,8 @@ class SupplyRequestLine(ModelSQL, ModelView):
 
     @staticmethod
     def default_delivery_date():
-        return datetime.date.today() + timedelta(days=2)
+        Date = Pool().get('ir.date')
+        return Date.today() + timedelta(days=2)
 
     def get_company(self, name):
         return self.request and self.request.company.id
@@ -276,7 +316,7 @@ class SupplyRequestLine(ModelSQL, ModelView):
         return res
 
     def get_supply_state(self, name):
-        if not self.move:
+        if not self.move or self.move.state == 'draft':
             return 'pending'
         if self.move.state in ('done', 'cancel'):
             return self.move.state

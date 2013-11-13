@@ -10,6 +10,7 @@ def register():
         Configuration,
         ConfigurationCompany,
         Move,
+        ShipmentInternal,
         SupplyRequest,
         SupplyRequestLine,
         module='stock_supply_request', type_='model')
