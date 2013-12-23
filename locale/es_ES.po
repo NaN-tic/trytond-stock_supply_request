@@ -12,7 +12,7 @@ msgstr "Almacén por defecto de las solicitudes"
 
 msgctxt "field:stock.configuration,supply_request_sequence:"
 msgid "Supply Request Reference Sequence"
-msgstr "Secuencia solicitud de proveedor"
+msgstr "Secuencia solicitud de abastecimiento"
 
 msgctxt "field:stock.configuration.company,company:"
 msgid "Company"
@@ -40,7 +40,7 @@ msgstr "Nombre"
 
 msgctxt "field:stock.configuration.company,supply_request_sequence:"
 msgid "Supply Request Reference Sequence"
-msgstr "Secuencia solicitud de proveedor"
+msgstr "Secuencia solicitud de abastecimiento"
 
 msgctxt "field:stock.configuration.company,write_date:"
 msgid "Write Date"
@@ -148,7 +148,7 @@ msgstr "Solicitud"
 
 msgctxt "field:stock.supply_request.line,supply_state:"
 msgid "Supply State"
-msgstr "Estaod proveedor"
+msgstr "Estado suministro"
 
 msgctxt "field:stock.supply_request.line,to_location:"
 msgid "To Location"
@@ -172,27 +172,27 @@ msgstr "Usuario modificación"
 
 msgctxt "model:ir.action,name:act_supply_request"
 msgid "Supply Request"
-msgstr "Solicitud de proveedor"
+msgstr "Solicitud de abastecimiento"
 
 msgctxt "model:ir.action,name:act_supply_request_line"
 msgid "Supply Request Line"
-msgstr "Línea solicitud de proveedor"
+msgstr "Línea solicitud de abastecimiento"
 
 msgctxt "model:ir.sequence,name:sequence_supply_request"
 msgid "Supply Request"
-msgstr "Solicitud de proveedor"
+msgstr "Solicitud de abastecimiento"
 
 msgctxt "model:ir.sequence.type,name:sequence_type_supply_request"
 msgid "Supply Request"
-msgstr "Solicitud de proveedor"
+msgstr "Solicitud de abastecimiento"
 
 msgctxt "model:ir.ui.menu,name:menu_supply_request_tree"
 msgid "Supply Request"
-msgstr "Solicitud de proveedor"
+msgstr "Solicitud de abastecimiento"
 
 msgctxt "model:res.group,name:group_supply_request"
 msgid "Stock Supply Request"
-msgstr "Solicitud de proveedor"
+msgstr "Solicitud de abastecimiento"
 
 msgctxt "model:stock.configuration.company,name:"
 msgid "Stock Configuration by Company"
@@ -200,11 +200,11 @@ msgstr "Configuración stock por compañía"
 
 msgctxt "model:stock.supply_request,name:"
 msgid "Supply Request"
-msgstr "Solicitud de proveedor"
+msgstr "Solicitud de abastecimiento"
 
 msgctxt "model:stock.supply_request.line,name:"
 msgid "Supply Request Line"
-msgstr "Línea solicitud de proveedor"
+msgstr "Línea solicitud de abastecimiento"
 
 msgctxt "selection:stock.supply_request,state:"
 msgid "Confirmed"
@@ -232,7 +232,7 @@ msgstr "Pendiente"
 
 msgctxt "view:stock.supply_request.line:"
 msgid "Supply Request Line"
-msgstr "Línea solicitud de proveedor"
+msgstr "Línea solicitud de abastecimiento"
 
 msgctxt "view:stock.supply_request:"
 msgid "Confirm"
@@ -240,8 +240,8 @@ msgstr "Confirmar"
 
 msgctxt "view:stock.supply_request:"
 msgid "Supply Request"
-msgstr "Solicitud de proveedor"
+msgstr "Solicitud de abastecimiento"
 
 msgctxt "view:stock.supply_request:"
 msgid "Supply Requests"
-msgstr "Solicitudes de proveedor"
+msgstr "Solicitudes de abastecimiento"
