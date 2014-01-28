@@ -29,9 +29,10 @@ msgctxt "field:stock.configuration,supply_request_sequence:"
 msgid "Supply Request Reference Sequence"
 msgstr ""
 
+#, fuzzy
 msgctxt "field:stock.configuration.company,company:"
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #, fuzzy
 msgctxt "field:stock.configuration.company,create_date:"
@@ -71,9 +72,10 @@ msgctxt "field:stock.configuration.company,write_uid:"
 msgid "Write User"
 msgstr "Usuari modificació"
 
+#, fuzzy
 msgctxt "field:stock.supply_request,company:"
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #, fuzzy
 msgctxt "field:stock.supply_request,create_date:"
@@ -85,9 +87,10 @@ msgctxt "field:stock.supply_request,create_uid:"
 msgid "Create User"
 msgstr "Usuari creació"
 
+#, fuzzy
 msgctxt "field:stock.supply_request,date:"
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 msgctxt "field:stock.supply_request,from_warehouse:"
 msgid "From Warehouse"
@@ -98,26 +101,30 @@ msgctxt "field:stock.supply_request,id:"
 msgid "ID"
 msgstr "ID"
 
+#, fuzzy
 msgctxt "field:stock.supply_request,lines:"
 msgid "Lines"
-msgstr ""
+msgstr "Línies"
 
+#, fuzzy
 msgctxt "field:stock.supply_request,note:"
 msgid "Note"
-msgstr ""
+msgstr "Nota"
 
 #, fuzzy
 msgctxt "field:stock.supply_request,rec_name:"
 msgid "Name"
 msgstr "Nom"
 
+#, fuzzy
 msgctxt "field:stock.supply_request,reference:"
 msgid "Reference"
-msgstr ""
+msgstr "Referència"
 
+#, fuzzy
 msgctxt "field:stock.supply_request,state:"
 msgid "State"
-msgstr ""
+msgstr "Estat"
 
 msgctxt "field:stock.supply_request,to_warehouse:"
 msgid "To Warehouse"
@@ -133,9 +140,10 @@ msgctxt "field:stock.supply_request,write_uid:"
 msgid "Write User"
 msgstr "Usuari modificació"
 
+#, fuzzy
 msgctxt "field:stock.supply_request.line,company:"
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #, fuzzy
 msgctxt "field:stock.supply_request.line,create_date:"
@@ -147,9 +155,10 @@ msgctxt "field:stock.supply_request.line,create_uid:"
 msgid "Create User"
 msgstr "Usuari creació"
 
+#, fuzzy
 msgctxt "field:stock.supply_request.line,delivery_date:"
 msgid "Delivery Date"
-msgstr ""
+msgstr "Data de lliurament"
 
 #, fuzzy
 msgctxt "field:stock.supply_request.line,id:"
@@ -160,38 +169,44 @@ msgctxt "field:stock.supply_request.line,move:"
 msgid "Reserve"
 msgstr ""
 
+#, fuzzy
 msgctxt "field:stock.supply_request.line,product:"
 msgid "Product"
-msgstr ""
+msgstr "Productes"
 
+#, fuzzy
 msgctxt "field:stock.supply_request.line,quantity:"
 msgid "Quantity"
-msgstr ""
+msgstr "Quantitat"
 
 #, fuzzy
 msgctxt "field:stock.supply_request.line,rec_name:"
 msgid "Name"
 msgstr "Nom"
 
+#, fuzzy
 msgctxt "field:stock.supply_request.line,request:"
 msgid "Request"
-msgstr ""
+msgstr "Sol·licitud"
 
 msgctxt "field:stock.supply_request.line,supply_state:"
 msgid "Supply State"
 msgstr ""
 
+#, fuzzy
 msgctxt "field:stock.supply_request.line,to_location:"
 msgid "To Location"
-msgstr ""
+msgstr "A la ubicació"
 
+#, fuzzy
 msgctxt "field:stock.supply_request.line,unit:"
 msgid "Unit"
-msgstr ""
+msgstr "Unitat"
 
+#, fuzzy
 msgctxt "field:stock.supply_request.line,unit_digits:"
 msgid "Unit Digits"
-msgstr ""
+msgstr "Dígits de la unitat"
 
 #, fuzzy
 msgctxt "field:stock.supply_request.line,write_date:"
@@ -239,37 +254,43 @@ msgctxt "model:stock.supply_request.line,name:"
 msgid "Supply Request Line"
 msgstr ""
 
+#, fuzzy
 msgctxt "selection:stock.supply_request,state:"
 msgid "Confirmed"
-msgstr ""
+msgstr "Confirmat"
 
+#, fuzzy
 msgctxt "selection:stock.supply_request,state:"
 msgid "Draft"
-msgstr ""
+msgstr "Esborrany"
 
+#, fuzzy
 msgctxt "selection:stock.supply_request.line,supply_state:"
 msgid "Canceled"
-msgstr ""
+msgstr "Cancel·lat"
 
+#, fuzzy
 msgctxt "selection:stock.supply_request.line,supply_state:"
 msgid "Done"
-msgstr ""
+msgstr "Realitzat"
 
 msgctxt "selection:stock.supply_request.line,supply_state:"
 msgid "In Progress"
 msgstr ""
 
+#, fuzzy
 msgctxt "selection:stock.supply_request.line,supply_state:"
 msgid "Pending"
-msgstr ""
+msgstr "Pendent"
 
 msgctxt "view:stock.supply_request.line:"
 msgid "Supply Request Line"
 msgstr ""
 
+#, fuzzy
 msgctxt "view:stock.supply_request:"
 msgid "Confirm"
-msgstr ""
+msgstr "Confirma"
 
 msgctxt "view:stock.supply_request:"
 msgid "Supply Request"

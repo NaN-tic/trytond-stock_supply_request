@@ -149,7 +149,7 @@ msgstr "Identificador"
 
 msgctxt "field:stock.supply_request.line,move:"
 msgid "Reserve"
-msgstr "Reservado"
+msgstr "Reserva"
 
 msgctxt "field:stock.supply_request.line,product:"
 msgid "Product"
