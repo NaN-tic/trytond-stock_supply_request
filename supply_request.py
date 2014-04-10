@@ -1,5 +1,5 @@
-#The COPYRIGHT file at the top level of this repository contains the full
-#copyright notices and license terms.
+# The COPYRIGHT file at the top level of this repository contains the full
+# copyright notices and license terms.
 from datetime import datetime, timedelta
 from trytond.model import Model, ModelView, ModelSQL, Workflow, fields
 from trytond.pool import Pool, PoolMeta
@@ -32,7 +32,7 @@ class Configuration:
         'get_company_config', setter='set_company_config')
 
     @classmethod
-    def get_company_config(self, configs, names):
+    def get_company_config(cls, configs, names):
         pool = Pool()
         CompanyConfig = pool.get('stock.configuration.company')
 
@@ -54,7 +54,7 @@ class Configuration:
         return res
 
     @classmethod
-    def set_company_config(self, configs, name, value):
+    def set_company_config(cls, configs, name, value):
         pool = Pool()
         CompanyConfig = pool.get('stock.configuration.company')
 
@@ -154,12 +154,12 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
                 'Source and destination warehouse must be different'),
             ]
         cls._error_messages.update({
-                'missing_supply_request_sequence': 'The sequence for Supply '
-                    'Requests is missing in Stock Configuration.',
-                'lines_required_confirmed': 'The Supply Request "%s" must '
-                    'have at least one line in order to be confirmed.',
-                'deletion_not_allowed': 'You can\'t delete the Supply Request '
-                    '"%s" because it isn\'t in Draft state.',
+                'missing_supply_request_sequence': ('The sequence for Supply '
+                    'Requests is missing in Stock Configuration.'),
+                'lines_required_confirmed': ('The Supply Request "%s" must '
+                    'have at least one line in order to be confirmed.'),
+                'deletion_not_allowed': ('You can\'t delete the Supply '
+                    'Request "%s" because it isn\'t in Draft state.'),
                  })
         cls._transitions |= set((
                 ('draft', 'confirmed'),
