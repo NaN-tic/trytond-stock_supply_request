@@ -52,7 +52,8 @@ class TestCase(unittest.TestCase):
         Test moves.
         '''
         with Transaction().start(DB_NAME, USER, context=CONTEXT):
-            company, = self.company.search([('rec_name', '=', 'B2CK')])
+            company, = self.company.search([
+                    ('rec_name', '=', 'Dunder Mifflin')])
             self.user.write([self.user(USER)], {
                 'main_company': company.id,
                 'company': company.id,
