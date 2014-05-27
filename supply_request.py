@@ -253,7 +253,7 @@ class SupplyRequestLine(ModelSQL, ModelView):
         'get_company', searcher='search_company')
     product = fields.Many2One('product.product', 'Product', domain=[
             ('type', '!=', 'service'),
-            ], on_change=['product', 'unit', 'unit_digits'], required=True)
+            ], required=True)
     unit = fields.Function(fields.Many2One('product.uom', 'Unit'),
         'get_unit')
     unit_digits = fields.Function(fields.Integer('Unit Digits'),
@@ -295,6 +295,7 @@ class SupplyRequestLine(ModelSQL, ModelView):
     def search_company(cls, name, clause):
         return [('request.%s' % name,) + tuple(clause[1:])]
 
+    @fields.depends('product', 'unit', 'unit_digits')
     def on_change_product(self):
         res = {}
         if self.product:
