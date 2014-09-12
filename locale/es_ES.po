@@ -89,7 +89,7 @@ msgstr "Fecha"
 
 msgctxt "field:stock.supply_request,from_warehouse:"
 msgid "From Warehouse"
-msgstr "Desdel alamacén"
+msgstr "Desde almacén"
 
 msgctxt "field:stock.supply_request,id:"
 msgid "ID"
