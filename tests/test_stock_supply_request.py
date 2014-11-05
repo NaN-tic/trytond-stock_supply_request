@@ -10,9 +10,7 @@ from trytond.transaction import Transaction
 
 
 class TestCase(unittest.TestCase):
-    '''
-    Test module.
-    '''
+    'Test module'
 
     def setUp(self):
         trytond.tests.test_tryton.install_module('stock_supply_request')
@@ -28,21 +26,15 @@ class TestCase(unittest.TestCase):
         self.request_line = POOL.get('stock.supply_request.line')
 
     def test0005views(self):
-        '''
-        Test views.
-        '''
+        'Test views'
         test_view('stock_supply_request')
 
     def test0006depends(self):
-        '''
-        Test depends.
-        '''
+        'Test depends'
         test_depends()
 
     def test0010moves(self):
-        '''
-        Test moves.
-        '''
+        'Test moves'
         with Transaction().start(DB_NAME, USER, context=CONTEXT):
             company, = self.company.search([
                     ('rec_name', '=', 'Dunder Mifflin')])
