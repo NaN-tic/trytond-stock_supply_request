@@ -66,7 +66,7 @@ cada línea en estado **borrador**. La reserva es un movimiento desde la
 línea.
 
 Podremos consultar el estado de la reserva mediante el campo |supply_state|
-de las lineas. Lo encontraremos con estado "*Pendiente*" cuando las reserva
+de las lineas. Lo encontraremos con estado "*Pendiente*" cuando la reserva
 aún no se haya procesado, y cambiará a "*Realizado*" se realize el envío.
 
 .. |supply_state| field:: stock.supply_request.line/supply_state
