@@ -297,12 +297,9 @@ class SupplyRequestLine(ModelSQL, ModelView):
 
     @fields.depends('product', 'unit', 'unit_digits')
     def on_change_product(self):
-        res = {}
         if self.product:
-            res['unit'] = self.product.default_uom.id
-            res['unit.rec_name'] = self.product.default_uom.rec_name
-            res['unit_digits'] = self.product.default_uom.digits
-        return res
+            self.unit = self.product.default_uom
+            self.unit_digits = self.product.default_uom.digits
 
     @classmethod
     def get_unit(cls, lines, names):
