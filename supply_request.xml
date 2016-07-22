@@ -141,7 +141,9 @@
             <field name="global_p" eval="True"/>
         </record>
         <record model="ir.rule" id="rule_supply_request">
-            <field name="domain">[('company', '=', user.company.id if user.company else None)]</field>
+            <field name="domain"
+                eval="[('company', '=', user.company.id if user.company else None)]"
+                pyson="1"/>
             <field name="rule_group" ref="rule_group_supply_request"/>
         </record>
 
