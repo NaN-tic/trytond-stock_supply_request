@@ -4,58 +4,44 @@
 import unittest
 import trytond.tests.test_tryton
 from decimal import Decimal
-from trytond.tests.test_tryton import (POOL, DB_NAME, USER, CONTEXT, test_view,
-    test_depends)
-from trytond.transaction import Transaction
+from trytond.pool import Pool
+from trytond.tests.test_tryton import ModuleTestCase, with_transaction
+
+from trytond.modules.company.tests import create_company, set_company
 
 
-class TestCase(unittest.TestCase):
+class TestCase(ModuleTestCase):
     'Test module'
+    module = 'stock_supply_request'
 
-    def setUp(self):
-        trytond.tests.test_tryton.install_module('stock_supply_request')
-        self.configuration = POOL.get('stock.configuration')
-        self.sequence = POOL.get('ir.sequence')
-        self.template = POOL.get('product.template')
-        self.product = POOL.get('product.product')
-        self.uom = POOL.get('product.uom')
-        self.location = POOL.get('stock.location')
-        self.company = POOL.get('company.company')
-        self.user = POOL.get('res.user')
-        self.request = POOL.get('stock.supply_request')
-        self.request_line = POOL.get('stock.supply_request.line')
-
-    def test0005views(self):
-        'Test views'
-        test_view('stock_supply_request')
-
-    def test0006depends(self):
-        'Test depends'
-        test_depends()
-
+    @with_transaction()
     def test0010moves(self):
         'Test moves'
-        with Transaction().start(DB_NAME, USER, context=CONTEXT):
-            company, = self.company.search([
-                    ('rec_name', '=', 'Dunder Mifflin')])
-            self.user.write([self.user(USER)], {
-                'main_company': company.id,
-                'company': company.id,
-                })
-            Transaction().context['company'] = company.id
+        pool = Pool()
+        Configuration = pool.get('stock.configuration')
+        Sequence = pool.get('ir.sequence')
+        Template = pool.get('product.template')
+        Product = pool.get('product.product')
+        Uom = pool.get('product.uom')
+        Location = pool.get('stock.location')
+        Request = pool.get('stock.supply_request')
+        RequestLine = pool.get('stock.supply_request.line')
 
-            configuration, = self.configuration.search([])
-            supply_sequence, = self.sequence.search([
+        # Create Company
+        company = create_company()
+        with set_company(company):
+            configuration, = Configuration.search([])
+            supply_sequence, = Sequence.search([
                     ('code', '=', 'stock.supply_request'),
                     ])
-            kg, = self.uom.search([('name', '=', 'Kilogram')])
-            warehouse, = self.location.search([('code', '=', 'WH')])
+            kg, = Uom.search([('name', '=', 'Kilogram')])
+            warehouse, = Location.search([('code', '=', 'WH')])
 
             configuration.supply_request_sequence = supply_sequence
             configuration.default_request_from_warehouse = warehouse
             configuration.save()
 
-            template, = self.template.create([{
+            template, = Template.create([{
                         'name': 'Test Supply Request',
                         'type': 'goods',
                         'list_price': Decimal(1),
@@ -63,17 +49,17 @@ class TestCase(unittest.TestCase):
                         'cost_price_method': 'fixed',
                         'default_uom': kg.id,
                         }])
-            product, = self.product.create([{
+            product, = Product.create([{
                         'template': template.id,
                         }])
 
-            storage2 = self.location(type='storage', name='Warehouse2 STO',
+            storage2 = Location(type='storage', name='Warehouse2 STO',
                 code='STO2')
-            production_loc = self.location(type='production', name='Location',
+            production_loc = Location(type='production', name='Location',
                 code='Location')
 
             storage2.save()
-            warehouse2 = self.location(type='warehouse',
+            warehouse2 = Location(type='warehouse',
                 name='Warehouse2',
                 code='WH2',
                 input_location=storage2,
@@ -84,7 +70,7 @@ class TestCase(unittest.TestCase):
             storage2.parent = warehouse2.id
             storage2.save()
 
-            locations = self.location.create([{
+            locations = Location.create([{
                         'code': 'LOC1',
                         'name': 'LOC1',
                         'type': 'storage',
@@ -96,19 +82,19 @@ class TestCase(unittest.TestCase):
                         'parent': storage2.id,
                         }])
 
-            request = self.request(company=company.id,
+            request = Request(company=company.id,
                 from_warehouse=warehouse,
                 to_warehouse=warehouse2,
                 lines=[])
             for qty, to_location in ((2.0, locations[0]), (4.0, locations[1])):
-                request_line = self.request_line()
-                request.lines.append(request_line)
+                request_line = RequestLine()
+                request.lines = (request_line,)
                 request_line.product = product
                 request_line.quantity = qty
                 request_line.to_location = to_location
             request.save()
 
-            self.request.confirm([request])
+            Request.confirm([request])
 
             for line in request.lines:
                 self.assertEqual(bool(line.move), True)
@@ -121,9 +107,5 @@ class TestCase(unittest.TestCase):
 
 def suite():
     suite = trytond.tests.test_tryton.suite()
-    from trytond.modules.company.tests import test_company
-    for test in test_company.suite():
-        if test not in suite:
-            suite.addTest(test)
     suite.addTests(unittest.TestLoader().loadTestsFromTestCase(TestCase))
     return suite
