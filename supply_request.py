@@ -1,7 +1,7 @@
 # The COPYRIGHT file at the top level of this repository contains the full
 # copyright notices and license terms.
 from datetime import datetime, timedelta
-from trytond.model import Model, ModelView, ModelSQL, Workflow, fields
+from trytond.model import Model, ModelView, ModelSQL, Workflow, Check, fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Bool, Eval, Equal, If, In
 from trytond.transaction import Transaction
@@ -148,9 +148,10 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
     @classmethod
     def __setup__(cls):
         super(SupplyRequest, cls).__setup__()
+        t = cls.__table__()
         cls._sql_constraints += [
             ('check_from_to_warehouses',
-                'CHECK(from_warehouse != to_warehouse)',
+                Check(t, t.from_warehouse != t.to_warehouse),
                 'Source and destination warehouse must be different'),
             ]
         cls._error_messages.update({
