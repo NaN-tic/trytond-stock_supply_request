@@ -12,11 +12,6 @@
             <field name="user" ref="res.user_admin"/>
             <field name="group" ref="group_supply_request"/>
         </record>
-        <record model="res.user-res.group"
-                id="user_trigger_group_supply_request">
-            <field name="user" ref="res.user_trigger"/>
-            <field name="group" ref="group_supply_request"/>
-        </record>
 
         <!-- stock.supply_request -->
         <record model="ir.ui.view" id="supply_request_view_form">
@@ -107,8 +102,7 @@
         </record>
 
         <record model="ir.model.access" id="access_supply_request_line">
-            <field name="model"
-                search="[('model', '=', 'stock.supply_request.line')]"/>
+            <field name="model" search="[('model', '=', 'stock.supply_request.line')]"/>
             <field name="perm_read" eval="False"/>
             <field name="perm_write" eval="False"/>
             <field name="perm_create" eval="False"/>
@@ -116,8 +110,7 @@
         </record>
         <record model="ir.model.access"
             id="access_supply_request_line_group_stock">
-            <field name="model"
-                search="[('model', '=', 'stock.supply_request.line')]"/>
+            <field name="model" search="[('model', '=', 'stock.supply_request.line')]"/>
             <field name="group" ref="stock.group_stock"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
@@ -136,15 +129,24 @@
         </record>
 
         <record model="ir.rule.group" id="rule_group_supply_request">
-            <field name="model"
-                search="[('model', '=', 'stock.supply_request')]"/>
+            <field name="name">Supply Request</field>
+            <field name="model" search="[('model', '=', 'stock.supply_request')]"/>
             <field name="global_p" eval="True"/>
         </record>
         <record model="ir.rule" id="rule_supply_request">
-            <field name="domain"
-                eval="[('company', '=', Eval('user', {}).get('company', None))]"
-                pyson="1"/>
+            <field name="domain" eval="[('company', '=', Eval('user', {}).get('company', None))]" pyson="1"/>
             <field name="rule_group" ref="rule_group_supply_request"/>
+        </record>
+
+        <!-- ir.model.button -->
+        <record model="ir.model.button" id="supply_request_confirm_button">
+            <field name="name">confirm</field>
+            <field name="string">Confirm</field>
+            <field name="model" search="[('model', '=', 'stock.supply_request')]"/>
+        </record>
+        <record model="ir.model.button-res.group" id="supply_request_confirm_button_group_stock">
+            <field name="button" ref="supply_request_confirm_button"/>
+            <field name="group" ref="stock.group_stock"/>
         </record>
 
         <!-- stock.configuration -->

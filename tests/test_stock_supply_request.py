@@ -45,7 +45,6 @@ class TestCase(ModuleTestCase):
                         'name': 'Test Supply Request',
                         'type': 'goods',
                         'list_price': Decimal(1),
-                        'cost_price': Decimal(0),
                         'cost_price_method': 'fixed',
                         'default_uom': kg.id,
                         }])

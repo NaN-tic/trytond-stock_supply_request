@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<tryton>
+    <data group="1">
+        <record model="ir.message" id="msg_missing_supply_request_sequence">
+            <field name="text">The sequence for Supply Requests is missing in Stock Configuration.</field>
+        </record>
+        <record model="ir.message" id="msg_lines_required_confirmed">
+            <field name="text">The Supply Request "%(request)s" must have at least one line in order to be confirmed.</field>
+        </record>
+        <record model="ir.message" id="msg_deletion_not_allowed">
+            <field name="text">You can't delete Supply Request "%(request)s" because it isn't in Draft state.</field>
+        </record>
+    </data>
+</tryton>
+

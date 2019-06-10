@@ -5,10 +5,11 @@ from trytond.model import Model, ModelView, ModelSQL, Workflow, Check, fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Bool, Eval, Equal, If, In
 from trytond.transaction import Transaction
+from trytond.exceptions import UserError
+from trytond.i18n import gettext
 
 __all__ = ['Configuration', 'ConfigurationCompany', 'Move', 'ShipmentInternal',
     'SupplyRequest', 'SupplyRequestLine']
-__metaclass__ = PoolMeta
 
 _STATES = {
     'readonly': Eval('state') != 'draft',
@@ -16,7 +17,7 @@ _STATES = {
 _DEPENDS = ['state']
 
 
-class Configuration:
+class Configuration(metaclass=PoolMeta):
     __name__ = 'stock.configuration'
 
     supply_request_sequence = fields.Function(fields.Many2One('ir.sequence',
@@ -89,7 +90,7 @@ class ConfigurationCompany(ModelSQL):
         return Transaction().context.get('company')
 
 
-class Move:
+class Move(metaclass=PoolMeta):
     __name__ = 'stock.move'
 
     @classmethod
@@ -99,7 +100,7 @@ class Move:
         return models
 
 
-class ShipmentInternal:
+class ShipmentInternal(metaclass=PoolMeta):
     __name__ = 'stock.shipment.internal'
 
     @classmethod
@@ -154,14 +155,6 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
                 Check(t, t.from_warehouse != t.to_warehouse),
                 'Source and destination warehouse must be different'),
             ]
-        cls._error_messages.update({
-                'missing_supply_request_sequence': ('The sequence for Supply '
-                    'Requests is missing in Stock Configuration.'),
-                'lines_required_confirmed': ('The Supply Request "%s" must '
-                    'have at least one line in order to be confirmed.'),
-                'deletion_not_allowed': ('You can\'t delete the Supply '
-                    'Request "%s" because it isn\'t in Draft state.'),
-                 })
         cls._transitions |= set((
                 ('draft', 'confirmed'),
                 ))
@@ -202,8 +195,9 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
     def confirm(cls, requests):
         for request in requests:
             if not request.lines:
-                cls.raise_user_error('lines_required_confirmed',
-                    request.rec_name)
+                raise UserError(gettext(
+                    'stock_supply_request.msg_lines_required_confirmed',
+                    request=request.rec_name))
             for line in request.lines:
                 move = line.get_move()
                 move.save()
@@ -221,7 +215,8 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
 
         config = Config(1)
         if not config.supply_request_sequence:
-            self.raise_user_error('missing_supply_request_sequence')
+            raise UserError(gettext(
+                    'stock_supply_request.msg_missing_supply_request_sequence'))
         if not self.reference:
             reference = Sequence.get_id(config.supply_request_sequence.id)
             self.reference = reference
@@ -240,7 +235,9 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
     def delete(cls, requests):
         for request in requests:
             if request.state != 'draft':
-                cls.raise_user_error('deletion_not_allowed', request.rec_name)
+                raise UserError(gettext(
+                        'stock_supply_request.msg_deletion_not_allowed',
+                        request=request.rec_name))
         super(SupplyRequest, cls).delete(requests)
 
 
