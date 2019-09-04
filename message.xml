@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <tryton>
-    <data group="1">
+    <data grouped="1">
         <record model="ir.message" id="msg_missing_supply_request_sequence">
             <field name="text">The sequence for Supply Requests is missing in Stock Configuration.</field>
         </record>
