@@ -161,6 +161,7 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
         cls._buttons.update({
                 'confirm': {
                     'invisible': Eval('state') != 'draft',
+                    'icon': 'tryton-forward',
                     },
                 })
 
