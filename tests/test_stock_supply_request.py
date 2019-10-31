@@ -63,7 +63,6 @@ class TestCase(ModuleTestCase):
                 code='WH2',
                 input_location=storage2,
                 output_location=storage2,
-                production_location=production_loc,
                 storage_location=storage2)
             warehouse2.save()
             storage2.parent = warehouse2.id
