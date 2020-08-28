@@ -278,7 +278,7 @@ class SupplyRequestLine(ModelSQL, ModelView):
                 ('pending', 'Pending'),
                 ('in_progress', 'In Progress'),
                 ('done', 'Done'),
-                ('cancel', 'Canceled'),
+                ('cancelled', "Cancelled"),
                 ], 'Supply State'),
         'get_supply_state')
 
@@ -286,6 +286,18 @@ class SupplyRequestLine(ModelSQL, ModelView):
     def default_delivery_date():
         Date = Pool().get('ir.date')
         return Date.today() + timedelta(days=2)
+
+    @classmethod
+    def __register__(cls, module_name):
+        cursor = Transaction().connection.cursor()
+        sql_table = cls.__table__()
+
+        super(SupplyRequestLine, cls).__register__(module_name)
+
+        # Migration from 5.6: rename state cancel to cancelled
+        cursor.execute(*sql_table.update(
+                [sql_table.state], ['cancelled'],
+                where=sql_table.state == 'cancel'))
 
     def get_company(self, name):
         return self.request and self.request.company.id
@@ -315,7 +327,7 @@ class SupplyRequestLine(ModelSQL, ModelView):
     def get_supply_state(self, name):
         if not self.move or self.move.state == 'draft':
             return 'pending'
-        if self.move.state in ('done', 'cancel'):
+        if self.move.state in ('done', 'cancelled'):
             return self.move.state
         return 'in_progress'
 

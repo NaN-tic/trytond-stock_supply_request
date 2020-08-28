@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -236,7 +236,7 @@ msgid "Draft"
 msgstr "Borrador"
 
 msgctxt "selection:stock.supply_request.line,supply_state:"
-msgid "Canceled"
+msgid "Cancelled"
 msgstr "Cancelado"
 
 msgctxt "selection:stock.supply_request.line,supply_state:"
