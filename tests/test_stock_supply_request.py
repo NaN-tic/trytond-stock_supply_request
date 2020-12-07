@@ -54,8 +54,6 @@ class TestCase(ModuleTestCase):
 
             storage2 = Location(type='storage', name='Warehouse2 STO',
                 code='STO2')
-            production_loc = Location(type='production', name='Location',
-                code='Location')
 
             storage2.save()
             warehouse2 = Location(type='warehouse',
