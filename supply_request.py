@@ -3,7 +3,7 @@
 from datetime import datetime, timedelta
 from trytond.model import Model, ModelView, ModelSQL, Workflow, Check, fields
 from trytond.pool import Pool, PoolMeta
-from trytond.pyson import Bool, Eval, Equal, If, In
+from trytond.pyson import Bool, Eval, Equal, If, In, Id
 from trytond.transaction import Transaction
 from trytond.exceptions import UserError
 from trytond.i18n import gettext
@@ -24,7 +24,8 @@ class Configuration(metaclass=PoolMeta):
             'Supply Request Reference Sequence', required=True, domain=[
                 ('company', 'in',
                     [Eval('context', {}).get('company', -1), None]),
-                ('code', '=', 'stock.supply_request'),
+                ('sequence_type', '=', Id('stock_supply_request',
+                        'sequence_type_supply_request')),
                 ]),
         'get_company_config', setter='set_company_config')
     default_request_from_warehouse = fields.Function(
@@ -82,7 +83,8 @@ class ConfigurationCompany(ModelSQL):
     supply_request_sequence = fields.Many2One('ir.sequence',
         'Supply Request Reference Sequence', domain=[
             ('company', 'in', [Eval('company'), None]),
-            ('code', '=', 'stock.supply_request'),
+            ('sequence_type', '=', Id('stock_supply_request',
+                    'sequence_type_supply_request')),
             ], depends=['company'])
 
     @staticmethod
@@ -212,15 +214,13 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
         '''
         pool = Pool()
         Config = pool.get('stock.configuration')
-        Sequence = pool.get('ir.sequence')
 
         config = Config(1)
         if not config.supply_request_sequence:
             raise UserError(gettext(
                     'stock_supply_request.msg_missing_supply_request_sequence'))
         if not self.reference:
-            reference = Sequence.get_id(config.supply_request_sequence.id)
-            self.reference = reference
+            self.reference = config.supply_request_sequence.get()
             self.save()
 
     @classmethod

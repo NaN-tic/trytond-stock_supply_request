@@ -180,7 +180,6 @@
         <!-- ir.sequence -->
         <record model="ir.sequence.type" id="sequence_type_supply_request">
             <field name="name">Supply Request</field>
-            <field name="code">stock.supply_request</field>
         </record>
         <record model="ir.sequence.type-res.group"
             id="sequence_type_supply_request_group_admin">
@@ -195,7 +194,7 @@
 
         <record model="ir.sequence" id="sequence_supply_request">
             <field name="name">Supply Request</field>
-            <field name="code">stock.supply_request</field>
+            <field name="sequence_type" ref="sequence_type_supply_request"/>
         </record>
 
         <!-- menus -->

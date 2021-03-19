@@ -31,8 +31,9 @@ class TestCase(ModuleTestCase):
         company = create_company()
         with set_company(company):
             configuration, = Configuration.search([])
+
             supply_sequence, = Sequence.search([
-                    ('code', '=', 'stock.supply_request'),
+                    ('name', '=', 'Supply Request'),
                     ])
             kg, = Uom.search([('name', '=', 'Kilogram')])
             warehouse, = Location.search([('code', '=', 'WH')])
