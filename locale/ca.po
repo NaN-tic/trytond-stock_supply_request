@@ -2,24 +2,20 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-msgctxt "field:stock.configuration,default_request_from_warehouse:"
-msgid "Default Request From Warehouse"
-msgstr "Magatzem per defecte de les sol·licituds"
+msgctxt "field:stock.configuration,request_from_warehouse:"
+msgid "Request From Warehouse"
+msgstr "Sol·licitud des del magatzem"
 
 msgctxt "field:stock.configuration,supply_request_sequence:"
-msgid "Supply Request Reference Sequence"
+msgid "Supply Request Sequence"
 msgstr "Seqüència sol·licitud de proveïment"
 
-msgctxt "field:stock.configuration.company,company:"
-msgid "Company"
-msgstr "Empresa"
+msgctxt "field:stock.configuration.location,request_from_warehouse:"
+msgid "Request From Warehouse"
+msgstr "Sol·licitud des del magatzem"
 
-msgctxt "field:stock.configuration.company,default_request_from_warehouse:"
-msgid "Default Request From Warehouse"
-msgstr "Magatzem per defecte de les sol·licituds"
-
-msgctxt "field:stock.configuration.company,supply_request_sequence:"
-msgid "Supply Request Reference Sequence"
+msgctxt "field:stock.configuration.sequence,supply_request_sequence:"
+msgid "Supply Request Sequence"
 msgstr "Seqüència sol·licitud de proveïment"
 
 msgctxt "field:stock.supply_request,company:"
@@ -147,10 +143,6 @@ msgstr "Sol·licitud de proveïment"
 msgctxt "model:res.group,name:group_supply_request"
 msgid "Stock Supply Request"
 msgstr "Sol·licitud de proveïment"
-
-msgctxt "model:stock.configuration.company,name:"
-msgid "Stock Configuration by Company"
-msgstr "Configuració d'stock per empresa"
 
 msgctxt "model:stock.supply_request,name:"
 msgid "Supply Request"

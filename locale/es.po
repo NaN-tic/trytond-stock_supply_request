@@ -2,25 +2,21 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-msgctxt "field:stock.configuration,default_request_from_warehouse:"
-msgid "Default Request From Warehouse"
-msgstr "Almacén por defecto de las solicitudes"
+msgctxt "field:stock.configuration,request_from_warehouse:"
+msgid "Request From Warehouse"
+msgstr "Solicitud desde almacén"
 
 msgctxt "field:stock.configuration,supply_request_sequence:"
-msgid "Supply Request Reference Sequence"
-msgstr "Secuencia solicitud de abastecimiento"
+msgid "Supply Request Sequence"
+msgstr "Secuencia solicitud abastecimiento"
 
-msgctxt "field:stock.configuration.company,company:"
-msgid "Company"
-msgstr "Empresa"
+msgctxt "field:stock.configuration.location,request_from_warehouse:"
+msgid "Request From Warehouse"
+msgstr "Solicitud desde almacén"
 
-msgctxt "field:stock.configuration.company,default_request_from_warehouse:"
-msgid "Default Request From Warehouse"
-msgstr "Almacén por defecto de las solicitudes"
-
-msgctxt "field:stock.configuration.company,supply_request_sequence:"
-msgid "Supply Request Reference Sequence"
-msgstr "Secuencia solicitud de abastecimiento"
+msgctxt "field:stock.configuration.sequence,supply_request_sequence:"
+msgid "Supply Request Sequence"
+msgstr "Secuencia solicitud abastecimiento"
 
 msgctxt "field:stock.supply_request,company:"
 msgid "Company"
@@ -147,10 +143,6 @@ msgstr "Solicitud de abastecimiento"
 msgctxt "model:res.group,name:group_supply_request"
 msgid "Stock Supply Request"
 msgstr "Solicitud de abastecimiento"
-
-msgctxt "model:stock.configuration.company,name:"
-msgid "Stock Configuration by Company"
-msgstr "Configuración stock por compañía"
 
 msgctxt "model:stock.supply_request,name:"
 msgid "Supply Request"

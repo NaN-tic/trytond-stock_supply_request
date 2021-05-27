@@ -5,7 +5,7 @@
     <xpath expr="/form" position="inside">
         <label name="supply_request_sequence"/>
         <field name="supply_request_sequence"/>
-        <label name="default_request_from_warehouse"/>
-        <field name="default_request_from_warehouse"/>
+        <label name="request_from_warehouse"/>
+        <field name="request_from_warehouse"/>
     </xpath>
 </data>
