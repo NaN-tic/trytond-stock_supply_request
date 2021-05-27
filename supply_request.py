@@ -1,93 +1,19 @@
 # The COPYRIGHT file at the top level of this repository contains the full
 # copyright notices and license terms.
 from datetime import datetime, timedelta
-from trytond.model import Model, ModelView, ModelSQL, Workflow, Check, fields
+from trytond.model import ModelView, ModelSQL, Workflow, Check, fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Bool, Eval, Equal, If, In
 from trytond.transaction import Transaction
 from trytond.exceptions import UserError
 from trytond.i18n import gettext
 
-__all__ = ['Configuration', 'ConfigurationCompany', 'Move', 'ShipmentInternal',
-    'SupplyRequest', 'SupplyRequestLine']
+__all__ = ['Move', 'ShipmentInternal', 'SupplyRequest', 'SupplyRequestLine']
 
 _STATES = {
     'readonly': Eval('state') != 'draft',
 }
 _DEPENDS = ['state']
-
-
-class Configuration(metaclass=PoolMeta):
-    __name__ = 'stock.configuration'
-
-    supply_request_sequence = fields.Function(fields.Many2One('ir.sequence',
-            'Supply Request Reference Sequence', required=True, domain=[
-                ('company', 'in',
-                    [Eval('context', {}).get('company', -1), None]),
-                ('code', '=', 'stock.supply_request'),
-                ]),
-        'get_company_config', setter='set_company_config')
-    default_request_from_warehouse = fields.Function(
-        fields.Many2One('stock.location', 'Default Request From Warehouse',
-            domain=[('type', '=', 'warehouse')]),
-        'get_company_config', setter='set_company_config')
-
-    @classmethod
-    def get_company_config(cls, configs, names):
-        pool = Pool()
-        CompanyConfig = pool.get('stock.configuration.company')
-
-        company_id = Transaction().context.get('company')
-        company_configs = CompanyConfig.search([
-                ('company', '=', company_id),
-                ])
-
-        res = {}
-        for fname in names:
-            res[fname] = {
-                configs[0].id: None,
-                }
-            if company_configs:
-                val = getattr(company_configs[0], fname)
-                if isinstance(val, Model):
-                    val = val.id
-                res[fname][configs[0].id] = val
-        return res
-
-    @classmethod
-    def set_company_config(cls, configs, name, value):
-        pool = Pool()
-        CompanyConfig = pool.get('stock.configuration.company')
-
-        company_id = Transaction().context.get('company')
-        company_configs = CompanyConfig.search([
-                ('company', '=', company_id),
-                ])
-        if company_configs:
-            company_config = company_configs[0]
-        else:
-            company_config = CompanyConfig(company=company_id)
-        setattr(company_config, name, value)
-        company_config.save()
-
-
-class ConfigurationCompany(ModelSQL):
-    'Stock Configuration by Company'
-    __name__ = 'stock.configuration.company'
-
-    company = fields.Many2One('company.company', 'Company', required=True,
-        ondelete='CASCADE', select=True)
-    default_request_from_warehouse = fields.Many2One('stock.location',
-        'Default Request From Warehouse', domain=[('type', '=', 'warehouse')])
-    supply_request_sequence = fields.Many2One('ir.sequence',
-        'Supply Request Reference Sequence', domain=[
-            ('company', 'in', [Eval('company'), None]),
-            ('code', '=', 'stock.supply_request'),
-            ], depends=['company'])
-
-    @staticmethod
-    def default_company():
-        return Transaction().context.get('company')
 
 
 class Move(metaclass=PoolMeta):
@@ -175,20 +101,18 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
 
     @staticmethod
     def default_from_warehouse():
-        pool = Pool()
-        Config = pool.get('stock.configuration')
+        Config = Pool().get('stock.configuration')
+
         config = Config(1)
-        if config.default_request_from_warehouse:
-            return config.default_request_from_warehouse.id
-        return None
+        if config.request_from_warehouse:
+            return config.request_from_warehouse.id
 
     @staticmethod
     def default_state():
         return 'draft'
 
     def get_rec_name(self, name):
-        return (self.reference or str(self.id)
-            + ' - ' + str(self.date))
+        return (self.reference or str(self.id) + ' - ' + str(self.date))
 
     @classmethod
     @ModelView.button
