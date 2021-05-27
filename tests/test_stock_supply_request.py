@@ -38,7 +38,7 @@ class TestCase(ModuleTestCase):
             warehouse, = Location.search([('code', '=', 'WH')])
 
             configuration.supply_request_sequence = supply_sequence
-            configuration.default_request_from_warehouse = warehouse
+            configuration.request_from_warehouse = warehouse
             configuration.save()
 
             template, = Template.create([{
