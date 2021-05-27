@@ -2,31 +2,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-msgctxt "error:stock.supply_request:"
-msgid "Source and destination warehouse must be different"
-msgstr "El orígen y el destino deben ser diferentes."
-
-msgctxt "error:stock.supply_request:"
-msgid ""
-"The Supply Request \"%s\" must have at least one line in order to be "
-"confirmed."
-msgstr ""
-"La solicitud de abastecimiento \"%s\" debe tener como mínimo una línea para "
-"ser confirmada."
-
-msgctxt "error:stock.supply_request:"
-msgid "The sequence for Supply Requests is missing in Stock Configuration."
-msgstr ""
-"La secuencia para las solicitudes de abastecimiento no está definida en la "
-"configuración de Logística."
-
-msgctxt "error:stock.supply_request:"
-msgid ""
-"You can't delete the Supply Request \"%s\" because it isn't in Draft state."
-msgstr ""
-"No puede eliminar la solicitud de abastecimiento \"%s\" porque no está en "
-"estado borrador."
-
 msgctxt "field:stock.configuration,default_request_from_warehouse:"
 msgid "Default Request From Warehouse"
 msgstr "Almacén por defecto de las solicitudes"
@@ -39,49 +14,17 @@ msgctxt "field:stock.configuration.company,company:"
 msgid "Company"
 msgstr "Empresa"
 
-msgctxt "field:stock.configuration.company,create_date:"
-msgid "Create Date"
-msgstr "Fecha creación"
-
-msgctxt "field:stock.configuration.company,create_uid:"
-msgid "Create User"
-msgstr "Usuario creación"
-
 msgctxt "field:stock.configuration.company,default_request_from_warehouse:"
 msgid "Default Request From Warehouse"
 msgstr "Almacén por defecto de las solicitudes"
-
-msgctxt "field:stock.configuration.company,id:"
-msgid "ID"
-msgstr "Identificador"
-
-msgctxt "field:stock.configuration.company,rec_name:"
-msgid "Name"
-msgstr "Nombre"
 
 msgctxt "field:stock.configuration.company,supply_request_sequence:"
 msgid "Supply Request Reference Sequence"
 msgstr "Secuencia solicitud de abastecimiento"
 
-msgctxt "field:stock.configuration.company,write_date:"
-msgid "Write Date"
-msgstr "Fecha modificación"
-
-msgctxt "field:stock.configuration.company,write_uid:"
-msgid "Write User"
-msgstr "Usuario modificación"
-
 msgctxt "field:stock.supply_request,company:"
 msgid "Company"
 msgstr "Empresa"
-
-msgctxt "field:stock.supply_request,create_date:"
-msgid "Create Date"
-msgstr "Fecha creación"
-
-msgctxt "field:stock.supply_request,create_uid:"
-msgid "Create User"
-msgstr "Usuario creación"
 
 msgctxt "field:stock.supply_request,date:"
 msgid "Date"
@@ -91,10 +34,6 @@ msgctxt "field:stock.supply_request,from_warehouse:"
 msgid "From Warehouse"
 msgstr "Desde almacén"
 
-msgctxt "field:stock.supply_request,id:"
-msgid "ID"
-msgstr "Identificador"
-
 msgctxt "field:stock.supply_request,lines:"
 msgid "Lines"
 msgstr "Líneas"
@@ -102,10 +41,6 @@ msgstr "Líneas"
 msgctxt "field:stock.supply_request,note:"
 msgid "Note"
 msgstr "Nota"
-
-msgctxt "field:stock.supply_request,rec_name:"
-msgid "Name"
-msgstr "Nombre"
 
 msgctxt "field:stock.supply_request,reference:"
 msgid "Reference"
@@ -119,33 +54,13 @@ msgctxt "field:stock.supply_request,to_warehouse:"
 msgid "To Warehouse"
 msgstr "A almacén"
 
-msgctxt "field:stock.supply_request,write_date:"
-msgid "Write Date"
-msgstr "Fecha modificación"
-
-msgctxt "field:stock.supply_request,write_uid:"
-msgid "Write User"
-msgstr "Usuario modificación"
-
 msgctxt "field:stock.supply_request.line,company:"
 msgid "Company"
 msgstr "Empresa"
 
-msgctxt "field:stock.supply_request.line,create_date:"
-msgid "Create Date"
-msgstr "Fecha creación"
-
-msgctxt "field:stock.supply_request.line,create_uid:"
-msgid "Create User"
-msgstr "Usuario creación"
-
 msgctxt "field:stock.supply_request.line,delivery_date:"
 msgid "Delivery Date"
 msgstr "Fecha de entrega"
-
-msgctxt "field:stock.supply_request.line,id:"
-msgid "ID"
-msgstr "Identificador"
 
 msgctxt "field:stock.supply_request.line,move:"
 msgid "Reserve"
@@ -153,15 +68,11 @@ msgstr "Reserva"
 
 msgctxt "field:stock.supply_request.line,product:"
 msgid "Product"
-msgstr "Productos"
+msgstr "Producto"
 
 msgctxt "field:stock.supply_request.line,quantity:"
 msgid "Quantity"
 msgstr "Cantidad"
-
-msgctxt "field:stock.supply_request.line,rec_name:"
-msgid "Name"
-msgstr "Nombre"
 
 msgctxt "field:stock.supply_request.line,request:"
 msgid "Request"
@@ -183,14 +94,6 @@ msgctxt "field:stock.supply_request.line,unit_digits:"
 msgid "Unit Digits"
 msgstr "Decimales de la unidad"
 
-msgctxt "field:stock.supply_request.line,write_date:"
-msgid "Write Date"
-msgstr "Fecha modificación"
-
-msgctxt "field:stock.supply_request.line,write_uid:"
-msgid "Write User"
-msgstr "Usuario modificación"
-
 msgctxt "model:ir.action,name:act_supply_request"
 msgid "Supply Request"
 msgstr "Solicitud de abastecimiento"
@@ -198,6 +101,36 @@ msgstr "Solicitud de abastecimiento"
 msgctxt "model:ir.action,name:act_supply_request_line"
 msgid "Supply Request Line"
 msgstr "Línea solicitud de abastecimiento"
+
+msgctxt "model:ir.message,text:msg_deletion_not_allowed"
+msgid ""
+"You can't delete Supply Request \"%(request)s\" because it isn't in Draft "
+"state."
+msgstr ""
+"No puede eliminar la solicitud de abastecimiento \"%(request)s\" porque no "
+"está en estado borrador."
+
+msgctxt "model:ir.message,text:msg_lines_required_confirmed"
+msgid ""
+"The Supply Request \"%(request)s\" must have at least one line in order to "
+"be confirmed."
+msgstr ""
+"La solicitud de abastecimiento \"%(request)s\" debe tener como mínimo una "
+"línea para ser confirmada."
+
+msgctxt "model:ir.message,text:msg_missing_supply_request_sequence"
+msgid "The sequence for Supply Requests is missing in Stock Configuration."
+msgstr ""
+"La secuencia para las solicitudes de abastecimiento no está definida en la "
+"configuración de logística."
+
+msgctxt "model:ir.model.button,string:supply_request_confirm_button"
+msgid "Confirm"
+msgstr "Confirmar"
+
+msgctxt "model:ir.rule.group,name:rule_group_supply_request"
+msgid "Supply Request"
+msgstr "Solicitud de abastecimiento"
 
 msgctxt "model:ir.sequence,name:sequence_supply_request"
 msgid "Supply Request"

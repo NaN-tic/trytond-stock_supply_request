@@ -2,80 +2,29 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-msgctxt "error:stock.supply_request:"
-msgid "Source and destination warehouse must be different"
-msgstr ""
-
-msgctxt "error:stock.supply_request:"
-msgid ""
-"The Supply Request \"%s\" must have at least one line in order to be "
-"confirmed."
-msgstr ""
-
-msgctxt "error:stock.supply_request:"
-msgid "The sequence for Supply Requests is missing in Stock Configuration."
-msgstr ""
-
-msgctxt "error:stock.supply_request:"
-msgid ""
-"You can't delete the Supply Request \"%s\" because it isn't in Draft state."
-msgstr ""
-
 msgctxt "field:stock.configuration,default_request_from_warehouse:"
 msgid "Default Request From Warehouse"
-msgstr ""
+msgstr "Magatzem per defecte de les sol·licituds"
 
 msgctxt "field:stock.configuration,supply_request_sequence:"
 msgid "Supply Request Reference Sequence"
-msgstr ""
+msgstr "Seqüència sol·licitud de proveïment"
 
 msgctxt "field:stock.configuration.company,company:"
 msgid "Company"
 msgstr "Empresa"
 
-msgctxt "field:stock.configuration.company,create_date:"
-msgid "Create Date"
-msgstr "Data creació"
-
-msgctxt "field:stock.configuration.company,create_uid:"
-msgid "Create User"
-msgstr "Usuari creació"
-
 msgctxt "field:stock.configuration.company,default_request_from_warehouse:"
 msgid "Default Request From Warehouse"
-msgstr ""
-
-msgctxt "field:stock.configuration.company,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:stock.configuration.company,rec_name:"
-msgid "Name"
-msgstr "Nom"
+msgstr "Magatzem per defecte de les sol·licituds"
 
 msgctxt "field:stock.configuration.company,supply_request_sequence:"
 msgid "Supply Request Reference Sequence"
-msgstr ""
-
-msgctxt "field:stock.configuration.company,write_date:"
-msgid "Write Date"
-msgstr "Data modificació"
-
-msgctxt "field:stock.configuration.company,write_uid:"
-msgid "Write User"
-msgstr "Usuari modificació"
+msgstr "Seqüència sol·licitud de proveïment"
 
 msgctxt "field:stock.supply_request,company:"
 msgid "Company"
 msgstr "Empresa"
-
-msgctxt "field:stock.supply_request,create_date:"
-msgid "Create Date"
-msgstr "Data creació"
-
-msgctxt "field:stock.supply_request,create_uid:"
-msgid "Create User"
-msgstr "Usuari creació"
 
 msgctxt "field:stock.supply_request,date:"
 msgid "Date"
@@ -83,11 +32,7 @@ msgstr "Data"
 
 msgctxt "field:stock.supply_request,from_warehouse:"
 msgid "From Warehouse"
-msgstr ""
-
-msgctxt "field:stock.supply_request,id:"
-msgid "ID"
-msgstr "ID"
+msgstr "Des del magatzem"
 
 msgctxt "field:stock.supply_request,lines:"
 msgid "Lines"
@@ -96,10 +41,6 @@ msgstr "Línies"
 msgctxt "field:stock.supply_request,note:"
 msgid "Note"
 msgstr "Nota"
-
-msgctxt "field:stock.supply_request,rec_name:"
-msgid "Name"
-msgstr "Nom"
 
 msgctxt "field:stock.supply_request,reference:"
 msgid "Reference"
@@ -111,51 +52,27 @@ msgstr "Estat"
 
 msgctxt "field:stock.supply_request,to_warehouse:"
 msgid "To Warehouse"
-msgstr ""
-
-msgctxt "field:stock.supply_request,write_date:"
-msgid "Write Date"
-msgstr "Data modificació"
-
-msgctxt "field:stock.supply_request,write_uid:"
-msgid "Write User"
-msgstr "Usuari modificació"
+msgstr "A magatzem"
 
 msgctxt "field:stock.supply_request.line,company:"
 msgid "Company"
 msgstr "Empresa"
 
-msgctxt "field:stock.supply_request.line,create_date:"
-msgid "Create Date"
-msgstr "Data creació"
-
-msgctxt "field:stock.supply_request.line,create_uid:"
-msgid "Create User"
-msgstr "Usuari creació"
-
 msgctxt "field:stock.supply_request.line,delivery_date:"
 msgid "Delivery Date"
 msgstr "Data de lliurament"
 
-msgctxt "field:stock.supply_request.line,id:"
-msgid "ID"
-msgstr "ID"
-
 msgctxt "field:stock.supply_request.line,move:"
 msgid "Reserve"
-msgstr ""
+msgstr "Reserva"
 
 msgctxt "field:stock.supply_request.line,product:"
 msgid "Product"
-msgstr "Productes"
+msgstr "Producte"
 
 msgctxt "field:stock.supply_request.line,quantity:"
 msgid "Quantity"
 msgstr "Quantitat"
-
-msgctxt "field:stock.supply_request.line,rec_name:"
-msgid "Name"
-msgstr "Nom"
 
 msgctxt "field:stock.supply_request.line,request:"
 msgid "Request"
@@ -163,7 +80,7 @@ msgstr "Sol·licitud"
 
 msgctxt "field:stock.supply_request.line,supply_state:"
 msgid "Supply State"
-msgstr ""
+msgstr "Estat sol·licitud"
 
 msgctxt "field:stock.supply_request.line,to_location:"
 msgid "To Location"
@@ -177,49 +94,71 @@ msgctxt "field:stock.supply_request.line,unit_digits:"
 msgid "Unit Digits"
 msgstr "Dígits de la unitat"
 
-msgctxt "field:stock.supply_request.line,write_date:"
-msgid "Write Date"
-msgstr "Data modificació"
-
-msgctxt "field:stock.supply_request.line,write_uid:"
-msgid "Write User"
-msgstr "Usuari modificació"
-
 msgctxt "model:ir.action,name:act_supply_request"
 msgid "Supply Request"
-msgstr ""
+msgstr "Sol·licitud de proveïment"
 
 msgctxt "model:ir.action,name:act_supply_request_line"
 msgid "Supply Request Line"
+msgstr "Linia sol·licitud de proveïment"
+
+msgctxt "model:ir.message,text:msg_deletion_not_allowed"
+msgid ""
+"You can't delete Supply Request \"%(request)s\" because it isn't in Draft "
+"state."
 msgstr ""
+"No pot eliminar la sol·licitud de proveïment \"%(request)s\" perquè no està "
+"en l'estat esborrany."
+
+msgctxt "model:ir.message,text:msg_lines_required_confirmed"
+msgid ""
+"The Supply Request \"%(request)s\" must have at least one line in order to "
+"be confirmed."
+msgstr ""
+"La sol·licitud de proveïment \"%(request)s ha de tenir com a mínim una linia"
+" per ser confirmada."
+
+msgctxt "model:ir.message,text:msg_missing_supply_request_sequence"
+msgid "The sequence for Supply Requests is missing in Stock Configuration."
+msgstr ""
+"La seqüència de les sol·licituds de proveïment no està definida a la "
+"configuració de logística."
+
+msgctxt "model:ir.model.button,string:supply_request_confirm_button"
+msgid "Confirm"
+msgstr "Confirmar"
+
+msgctxt "model:ir.rule.group,name:rule_group_supply_request"
+msgid "Supply Request"
+msgstr "Sol·licitud de proveïment"
 
 msgctxt "model:ir.sequence,name:sequence_supply_request"
 msgid "Supply Request"
-msgstr ""
+msgstr "Sol·licitud de proveïment"
 
 msgctxt "model:ir.sequence.type,name:sequence_type_supply_request"
 msgid "Supply Request"
-msgstr ""
+msgstr "Sol·licitud de proveïment"
 
 msgctxt "model:ir.ui.menu,name:menu_supply_request_tree"
 msgid "Supply Request"
-msgstr ""
+msgstr "Sol·licitud de proveïment"
 
 msgctxt "model:res.group,name:group_supply_request"
 msgid "Stock Supply Request"
-msgstr ""
+msgstr "Sol·licitud de proveïment"
 
 msgctxt "model:stock.configuration.company,name:"
 msgid "Stock Configuration by Company"
-msgstr ""
+msgstr "Configuració d'stock per empresa"
 
 msgctxt "model:stock.supply_request,name:"
 msgid "Supply Request"
-msgstr ""
+msgstr "Sol·licitud de proveïment"
 
 msgctxt "model:stock.supply_request.line,name:"
 msgid "Supply Request Line"
-msgstr ""
+msgstr "Linia sol·licitud de proveïment"
 
 msgctxt "selection:stock.supply_request,state:"
 msgid "Confirmed"
@@ -230,7 +169,7 @@ msgid "Draft"
 msgstr "Esborrany"
 
 msgctxt "selection:stock.supply_request.line,supply_state:"
-msgid "Cancelled"
+msgid "Canceled"
 msgstr "Cancel·lat"
 
 msgctxt "selection:stock.supply_request.line,supply_state:"
@@ -239,7 +178,7 @@ msgstr "Realitzat"
 
 msgctxt "selection:stock.supply_request.line,supply_state:"
 msgid "In Progress"
-msgstr "En pogrés"
+msgstr "En progrés"
 
 msgctxt "selection:stock.supply_request.line,supply_state:"
 msgid "Pending"
@@ -247,16 +186,16 @@ msgstr "Pendent"
 
 msgctxt "view:stock.supply_request.line:"
 msgid "Supply Request Line"
-msgstr "Linea sol·licituds de subministrament"
+msgstr "Linia sol·licitud de proveïment"
 
 msgctxt "view:stock.supply_request:"
 msgid "Confirm"
-msgstr "Confirma"
+msgstr "Confirmar"
 
 msgctxt "view:stock.supply_request:"
 msgid "Supply Request"
-msgstr "Sol·licituds de subministrament"
+msgstr "Sol·licitud de proveïment"
 
 msgctxt "view:stock.supply_request:"
 msgid "Supply Requests"
-msgstr "Sol·licituds de subministrament"
+msgstr "Sol·licituds de proveïment"
