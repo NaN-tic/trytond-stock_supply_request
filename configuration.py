@@ -2,7 +2,7 @@
 # copyright notices and license terms.
 from trytond.model import fields
 from trytond.pool import Pool, PoolMeta
-from trytond.pyson import Eval
+from trytond.pyson import Eval, Id
 
 __all__ = ['Configuration', 'ConfigurationSequence', 'ConfigurationLocation']
 
@@ -11,7 +11,8 @@ supply_request_sequence = fields.Many2One(
     domain=[
         ('company', 'in',
             [Eval('context', {}).get('company', -1), None]),
-        ('code', '=', 'stock.supply_request'),
+        ('sequence_type', '=', Id('stock_supply_request',
+                'sequence_type_supply_request')),
         ])
 request_from_warehouse = fields.Many2One(
     'stock.location', "Request From Warehouse", required=True,
