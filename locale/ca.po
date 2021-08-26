@@ -86,9 +86,9 @@ msgctxt "field:stock.supply_request.line,unit:"
 msgid "Unit"
 msgstr "Unitat"
 
-msgctxt "field:stock.supply_request.line,unit_digits:"
-msgid "Unit Digits"
-msgstr "Dígits de la unitat"
+msgctxt "field:stock.supply_request.line,unit:"
+msgid "Unit"
+msgstr "Unitat"
 
 msgctxt "model:ir.action,name:act_supply_request"
 msgid "Supply Request"

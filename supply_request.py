@@ -176,11 +176,8 @@ class SupplyRequestLine(ModelSQL, ModelView):
             ('type', '!=', 'service'),
             ], required=True)
     unit = fields.Function(fields.Many2One('product.uom', 'Unit'),
-        'get_unit')
-    unit_digits = fields.Function(fields.Integer('Unit Digits'),
-        'get_unit')
-    quantity = fields.Float('Quantity', digits=(16, Eval('unit_digits', 2)),
-        depends=['unit_digits'], required=True)
+        'on_change_with_unit')
+    quantity = fields.Float('Quantity', digits='unit', required=True)
     to_location = fields.Many2One('stock.location', 'To Location',
         required=True, domain=[
             ('type', '=', 'storage'),
@@ -216,23 +213,15 @@ class SupplyRequestLine(ModelSQL, ModelView):
     def search_company(cls, name, clause):
         return [('request.%s' % name,) + tuple(clause[1:])]
 
-    @fields.depends('product', 'unit', 'unit_digits')
+    @fields.depends('product', 'unit')
     def on_change_product(self):
         if self.product:
             self.unit = self.product.default_uom
-            self.unit_digits = self.product.default_uom.digits
 
-    @classmethod
-    def get_unit(cls, lines, names):
-        res = {}
-        for line in lines:
-            if 'unit' in names:
-                res.setdefault('unit', {})[line.id] = (
-                    line.product.default_uom.id)
-            if 'unit_digits' in names:
-                res.setdefault('unit_digits', {})[line.id] = (
-                    line.product.default_uom.digits)
-        return res
+    @fields.depends('product')
+    def on_change_with_unit(self, name=None):
+        if self.product:
+            return self.product.default_uom.id
 
     def get_supply_state(self, name):
         if not self.move or self.move.state == 'draft':
