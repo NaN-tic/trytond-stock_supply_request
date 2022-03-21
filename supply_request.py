@@ -174,7 +174,11 @@ class SupplyRequestLine(ModelSQL, ModelView):
         'get_company', searcher='search_company')
     product = fields.Many2One('product.product', 'Product', domain=[
             ('type', '!=', 'service'),
-            ], required=True)
+            ], required=True,
+        context={
+            'company': Eval('company'),
+            },
+        depends=['company'])
     unit = fields.Function(fields.Many2One('product.uom', 'Unit'),
         'get_unit')
     unit_digits = fields.Function(fields.Integer('Unit Digits'),
