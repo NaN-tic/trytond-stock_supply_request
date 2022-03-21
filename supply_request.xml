@@ -71,6 +71,18 @@
             <field name="perm_delete" eval="True"/>
         </record>
 
+        <record model="ir.rule.group" id="rule_group_supply_request">
+            <field name="name">User in companies</field>
+            <field name="model" search="[('model', '=', 'stock.supply_request')]"/>
+            <field name="global_p" eval="True"/>
+        </record>
+        <record model="ir.rule" id="rule_supply_request">
+            <field name="domain"
+                eval="[('company', 'in', Eval('companies', []))]"
+                pyson="1"/>
+            <field name="rule_group" ref="rule_group_supply_request"/>
+        </record>
+
         <!-- stock.supply_request.line -->
         <record model="ir.ui.view" id="supply_request_line_view_form">
             <field name="model">stock.supply_request.line</field>
@@ -128,14 +140,16 @@
             <field name="perm_delete" eval="True"/>
         </record>
 
-        <record model="ir.rule.group" id="rule_group_supply_request">
-            <field name="name">Supply Request</field>
-            <field name="model" search="[('model', '=', 'stock.supply_request')]"/>
+        <record model="ir.rule.group" id="rule_group_supply_request_line">
+            <field name="name">User in companies</field>
+            <field name="model" search="[('model', '=', 'stock.supply_request.line')]"/>
             <field name="global_p" eval="True"/>
         </record>
-        <record model="ir.rule" id="rule_supply_request">
-            <field name="domain" eval="[('company', '=', Eval('user', {}).get('company', None))]" pyson="1"/>
-            <field name="rule_group" ref="rule_group_supply_request"/>
+        <record model="ir.rule" id="rule_supply_request_line">
+            <field name="domain"
+                eval="[('company', 'in', Eval('companies', []))]"
+                pyson="1"/>
+            <field name="rule_group" ref="rule_group_supply_request_line"/>
         </record>
 
         <!-- ir.model.button -->
