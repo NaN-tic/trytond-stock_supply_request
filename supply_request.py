@@ -39,8 +39,7 @@ class ShipmentInternal(metaclass=PoolMeta):
             ('to_location', '=', Eval('to_location')),
             ]
         for fname in ('from_location', 'to_location'):
-            if fname not in cls.moves.depends:
-                cls.moves.depends.append(fname)
+            cls.moves.depends.add(fname)
 
 
 class SupplyRequest(Workflow, ModelSQL, ModelView):
