@@ -53,23 +53,23 @@ class SupplyRequest(Workflow, ModelSQL, ModelView):
             ('id', If(In('company', Eval('context', {})), '=', '!='),
                 Eval('context', {}).get('company', -1)),
             ], states=_STATES, depends=_DEPENDS)
-    reference = fields.Char('Reference', readonly=True, select=True)
+    reference = fields.Char('Reference', readonly=True)
     date = fields.DateTime('Date', required=True, states=_STATES,
         depends=_DEPENDS)
     from_warehouse = fields.Many2One('stock.location', 'From Warehouse',
         domain=[
             ('type', '=', 'warehouse'),
-            ], select=True, required=True, states=_STATES, depends=_DEPENDS)
+            ], required=True, states=_STATES, depends=_DEPENDS)
     to_warehouse = fields.Many2One('stock.location', 'To Warehouse', domain=[
             ('type', '=', 'warehouse'),
-            ], select=True, required=True, states=_STATES, depends=_DEPENDS)
+            ], required=True, states=_STATES, depends=_DEPENDS)
     lines = fields.One2Many('stock.supply_request.line', 'request', 'Lines',
         states=_STATES, depends=_DEPENDS)
     note = fields.Text('Note', states=_STATES, depends=_DEPENDS)
     state = fields.Selection([
         ('draft', 'Draft'),
         ('confirmed', 'Confirmed'),
-        ], 'State', readonly=True, required=True, select=True)
+        ], 'State', readonly=True, required=True)
 
     @classmethod
     def __setup__(cls):
