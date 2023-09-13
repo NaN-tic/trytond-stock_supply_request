@@ -242,7 +242,7 @@ class SupplyRequestLine(ModelSQL, ModelView):
 
         move = Move()
         move.product = self.product.id
-        move.uom = self.unit.id
+        move.unit = self.unit.id
         move.quantity = self.quantity
         move.from_location = self.request.from_warehouse.storage_location
         move.to_location = self.to_location
