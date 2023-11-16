@@ -175,7 +175,7 @@ class SupplyRequestLine(ModelSQL, ModelView):
             ('type', '!=', 'service'),
             ], required=True,
         context={
-            'company': Eval('company'),
+            'company': Eval('company', -1),
             },
         depends=['company'])
     unit = fields.Function(fields.Many2One('product.uom', 'Unit'),
