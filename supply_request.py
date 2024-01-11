@@ -188,14 +188,14 @@ class SupplyRequestLine(ModelSQL, ModelView):
                 ('parent', 'child_of', [Eval('_parent_request', {}).get(
                         'to_warehouse', 0)]),
                 ()),
-            ], depends=['request'])
+            ])
     delivery_date = fields.Date("Delivery Date", required=True)
     move = fields.Many2One('stock.move', 'Reserve', readonly=True, domain=[
             ('product', '=', Eval('product')),
             ],
         states={
             'required': Equal(Eval('_parent_request.state'), 'confirmed'),
-            }, depends=['product'])
+            })
     supply_state = fields.Function(fields.Selection([
                 ('pending', 'Pending'),
                 ('in_progress', 'In Progress'),
