@@ -44,16 +44,14 @@
         </record>
 
         <record model="ir.model.access" id="access_supply_request">
-            <field name="model"
-                search="[('model', '=', 'stock.supply_request')]"/>
+            <field name="model">stock.supply_request</field>
             <field name="perm_read" eval="False"/>
             <field name="perm_write" eval="False"/>
             <field name="perm_create" eval="False"/>
             <field name="perm_delete" eval="False"/>
         </record>
         <record model="ir.model.access" id="access_supply_request_group_stock">
-            <field name="model"
-                search="[('model', '=', 'stock.supply_request')]"/>
+            <field name="model">stock.supply_request</field>
             <field name="group" ref="stock.group_stock"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
@@ -62,8 +60,7 @@
         </record>
         <record model="ir.model.access"
             id="access_supply_request_group_supply_request">
-            <field name="model"
-                search="[('model', '=', 'stock.supply_request')]"/>
+            <field name="model">stock.supply_request</field>
             <field name="group" ref="group_supply_request"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
@@ -131,8 +128,7 @@
         </record>
         <record model="ir.model.access"
             id="access_supply_request_group_supply_request_line">
-            <field name="model"
-                search="[('model', '=', 'stock.supply_request.line')]"/>
+            <field name="model">stock.supply_request.line</field>
             <field name="group" ref="group_supply_request"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
