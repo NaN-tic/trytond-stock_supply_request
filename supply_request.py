@@ -35,8 +35,8 @@ class ShipmentInternal(metaclass=PoolMeta):
         cls.moves.add_remove = [
             ('shipment', '=', None),
             ('state', 'in', ('draft', 'assigned')),
-            ('from_location', '=', Eval('from_location')),
-            ('to_location', '=', Eval('to_location')),
+            ('from_location', '=', Eval('from_location', -1)),
+            ('to_location', '=', Eval('to_location', -1)),
             ]
         for fname in ('from_location', 'to_location'):
             cls.moves.depends.add(fname)
